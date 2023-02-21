@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-iex
+spec:
+  selector:
+    matchLabels:
+      app: springboot-iex
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: springboot-iex
+    spec:
+      containers:
+        - name: springboot-iex
+          image: 498545212216.dkr.ecr.eu-central-1.amazonaws.com/spring-iex:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              valueFrom :
+                configMapKeyRef :
+                  name : mysql-config
+                  key :  host
+
+            - name: DB_NAME
+              valueFrom :
+                configMapKeyRef :
+                  name : mysql-config
+                  key :  dbName
+
+            - name: DB_USERNAME
+              valueFrom :
+                secretKeyRef :
+                  name : mysql-credentials
+                  key :  username
+
+            - name: DB_PASSWORD
+              valueFrom :
+                secretKeyRef :
+                  name : mysql-credentials
+                  key :  password
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-iex-service
+spec:
+  selector:
+    app: springboot-k8s-mysql
+  ports:
+    - protocol: "TCP"
+      port: 8080
+      targetPort:
+  type: NodePort
+---

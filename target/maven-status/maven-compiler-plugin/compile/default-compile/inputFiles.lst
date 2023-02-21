@@ -1,0 +1,15 @@
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/job/ConsoleJob.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/config/SchedulerConfig.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/model/Company.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/service/StockServiceImpl.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/repository/CompanyRepository.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/job/CompanyJob.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/model/Stock.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/config/AppConfig.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/service/CompanyService.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/service/StockService.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/dto/CompanyDto.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/repository/StockRepository.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/service/CompanyServiceImpl.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/dto/StockDto.java
+/Users/niqitagrigorivich/Desktop/iex-stocks-springboot/src/main/java/com/mykyta/iexstocks/IexstocksApplication.java

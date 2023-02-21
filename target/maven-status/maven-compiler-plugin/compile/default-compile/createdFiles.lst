@@ -1,0 +1,15 @@
+com/mykyta/iexstocks/service/CompanyServiceImpl.class
+com/mykyta/iexstocks/job/ConsoleJob.class
+com/mykyta/iexstocks/IexstocksApplication.class
+com/mykyta/iexstocks/service/StockService.class
+com/mykyta/iexstocks/repository/CompanyRepository.class
+com/mykyta/iexstocks/model/Stock.class
+com/mykyta/iexstocks/dto/CompanyDto.class
+com/mykyta/iexstocks/dto/StockDto.class
+com/mykyta/iexstocks/model/Company.class
+com/mykyta/iexstocks/config/SchedulerConfig.class
+com/mykyta/iexstocks/service/CompanyService.class
+com/mykyta/iexstocks/job/CompanyJob.class
+com/mykyta/iexstocks/service/StockServiceImpl.class
+com/mykyta/iexstocks/repository/StockRepository.class
+com/mykyta/iexstocks/config/AppConfig.class
