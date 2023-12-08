@@ -16,7 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Stock implements Serializable {
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "symbol")
     private String symbol;

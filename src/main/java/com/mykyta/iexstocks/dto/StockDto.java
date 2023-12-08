@@ -6,8 +6,6 @@ import lombok.Data;
 
 @Data
 public class StockDto {
-    @JsonProperty(value = "latestUpdate")
-    private Long id;
     @JsonProperty(value = "symbol")
     private String symbol;
     @JsonProperty(value = "companyName")
@@ -21,9 +19,8 @@ public class StockDto {
     @JsonProperty(value = "previousVolume")
     private Long volume;
 
-    public Stock toStock(){
+    public Stock toStock() {
         Stock stock = new Stock();
-        stock.setId(id);
         stock.setSymbol(symbol);
         stock.setCompanyName(companyName);
         stock.setCurrency(currency);
@@ -34,7 +31,7 @@ public class StockDto {
         return stock;
     }
 
-    public StockDto fromStock(Stock stock){
+    public StockDto fromStock(Stock stock) {
         StockDto stockDto = new StockDto();
         stockDto.setSymbol(stock.getSymbol());
         stockDto.setCompanyName(stock.getCompanyName());
