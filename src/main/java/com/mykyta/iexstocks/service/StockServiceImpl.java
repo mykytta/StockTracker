@@ -8,9 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -42,26 +44,35 @@ public class StockServiceImpl implements StockService {
     }
 
     public void writeCompanyInfoToDB() {
-        List<Company> companies = companyService.getCompaniesDto();
-        List<Stock> stockList = new CopyOnWriteArrayList<>();
-        List<CompletableFuture<Void>> futureList = new ArrayList<>();
+        Executor executor = getCustomExecutor();
 
-        companies.forEach(company -> {
-            CompletableFuture<Void> future = CompletableFuture.supplyAsync(() -> restTemplate
-                            .getForObject
-                                    ("https://cloud.iexapis.com/stable/stock/" +
-                                            company.getCompanyName() +
-                                            "/quote?token=pk_0a4c90fecb8f466d8cd7220e70b0830a", StockDto.class)
-                            .toStock(), executorService)
-                    .thenAccept(stock -> {
-                        stock.setId(company.getId());
-                        stockList.add(stock);
-                    });
-            futureList.add(future.exceptionally(ex -> {
-                return null;
-            }));
-        });
-        futureList.forEach(CompletableFuture::join);
+        List<CompletableFuture<Stock>> futures = getAllSports().stream()
+                .map(stockDto -> CompletableFuture.supplyAsync(stockDto::toStock, executor))
+                .collect(Collectors.toList());
+
+        CompletableFuture<Void> allOf = CompletableFuture.allOf(
+                futures.toArray(new CompletableFuture[0]));
+
+        CompletableFuture<List<Stock>> result = allOf.thenApply(v ->
+                futures.stream()
+                        .map(CompletableFuture::join)
+                        .collect(Collectors.toList())
+        );
+
+        List<Stock> stockList = result.join();
         stockRepository.saveAll(stockList);
+    }
+
+    private Executor getCustomExecutor() {
+        return Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    }
+
+    public List<StockDto> getAllSports() {
+        return WebClient.create("")
+                .get()
+                .retrieve()
+                .bodyToFlux(StockDto.class)
+                .collectList()
+                .block();
     }
 }
